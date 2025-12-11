@@ -3,6 +3,8 @@ package com.project.tracker.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -38,13 +40,12 @@ public class Task {
     @Column(name = "nu_progress")
     private Integer progress;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "dt_due_date")
-    private Date dueDate;
+    private LocalDate dueDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_created")
-    private Date createdOn;
+    private LocalDateTime createdOn;
+
 
     // 🔴 NOT persisted – used only for UI (JSP ${task.ai...})
     @Transient

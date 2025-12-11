@@ -16,13 +16,16 @@ public class TeamMember {
     @Column(name = "nu_member_id")
     private Long id;
 
-    @Column(name = "vc_member_name", nullable = false)
-    private String memberName;
+    @Column(name = "vc_name", nullable = false)
+    private String name;
 
-    @Column(name = "vc_email")
-    private String email;
+    @Column(name = "vc_designation")
+    private String designation;
 
-    @ManyToOne
-    @JoinColumn(name = "nu_team_id", nullable = false)
+    @Column(name = "nu_contact")
+    private Long contact;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "nu_team_id")
     private Team team;
 }

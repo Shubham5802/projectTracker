@@ -10,6 +10,9 @@ import com.project.tracker.service.ai.TaskAiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +32,8 @@ public class TaskServiceImpl implements TaskService {
         task.setProject(project);
         task.setStatus("OPEN");
         task.setProgress(0);
-        task.setCreatedOn(new Date());
+        task.setCreatedOn(LocalDateTime.now());
+
 
         return taskRepository.save(task);
     }
@@ -99,25 +103,25 @@ public TaskAIDto analyzeTaskRisk(Task task) {
         return ai;
     }
 
-    Date today = new Date();
-    long diffDays =
-            (task.getDueDate().getTime() - today.getTime()) / (1000 * 60 * 60 * 24);
+    LocalDate today = LocalDate.now();
+    LocalDate due = task.getDueDate();
 
-    int progress = task.getProgress() == null ? 0 : task.getProgress();
+    // today -> due
+    long diffDays = ChronoUnit.DAYS.between(today, due);
 
-    // 🔴 Overdue
-    if (diffDays < 0 && progress < 100) {
+    if (diffDays < -5 && task.getProgress() < 80) {
         ai.setRiskLevel("HIGH");
+        ai.setSuggestion("Task is seriously overdue and behind progress.");
         ai.setDelayScore(90);
-    }
-    // 🟠 Near deadline
-    else if (diffDays <= 2 && progress < 80) {
+
+    } else if (diffDays < 0) {
         ai.setRiskLevel("MEDIUM");
+        ai.setSuggestion("Task is overdue. Consider prioritizing.");
         ai.setDelayScore(60);
-    }
-    // 🟢 On Track
-    else {
+
+    } else {
         ai.setRiskLevel("LOW");
+        ai.setSuggestion("Task is on schedule.");
         ai.setDelayScore(20);
     }
 

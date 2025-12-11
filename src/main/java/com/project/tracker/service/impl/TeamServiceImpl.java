@@ -12,15 +12,37 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TeamServiceImpl implements TeamService {
 
-    private final TeamRepository repo;
+    private final TeamRepository teamRepository;
 
     @Override
-    public Team createTeam(Team t) {
-        return repo.save(t);
+    public Team createTeam(Team team) {
+        return teamRepository.save(team);
+    }
+
+    @Override
+    public Team updateTeam(Long id, Team updated) {
+        Team team = teamRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Team not found"));
+
+        team.setName(updated.getName());
+        team.setDescription(updated.getDescription());
+
+        return teamRepository.save(team);
+    }
+
+    @Override
+    public void deleteTeam(Long id) {
+        teamRepository.deleteById(id);
+    }
+
+    @Override
+    public Team getTeam(Long id) {
+        return teamRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Team not found"));
     }
 
     @Override
     public List<Team> getAllTeams() {
-        return repo.findAll();
+        return teamRepository.findAll();
     }
 }

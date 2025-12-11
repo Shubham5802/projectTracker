@@ -20,11 +20,11 @@ public class ProjectController {
     private final ProjectService projectService;
 
     @PostMapping("/create")
-    public String createProjectFormSubmit(@ModelAttribute ProjectCreateRequest request) {
+    public String createProjectFromJsp(@ModelAttribute ProjectCreateRequest request) {
 
         projectService.createProject(request);
 
-        return "redirect:/projects"; // redirect to list page
+        return "redirect:/projects/list-projects"; 
     }
 
     

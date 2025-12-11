@@ -15,7 +15,7 @@ public class TeamPageController {
     private final TeamService teamService;
 
     @GetMapping
-    public String list(Model model) {
+    public String listTeams(Model model) {
         model.addAttribute("teams", teamService.getAllTeams());
         return "teams/list-teams";
     }
@@ -26,8 +26,26 @@ public class TeamPageController {
     }
 
     @PostMapping("/create")
-    public String create(Team t) {
-        teamService.createTeam(t);
+    public String createTeam(Team team) {
+        teamService.createTeam(team);
+        return "redirect:/teams";
+    }
+
+    @GetMapping("/edit")
+    public String editForm(@RequestParam Long id, Model model) {
+        model.addAttribute("team", teamService.getTeam(id));
+        return "teams/edit-team";
+    }
+
+    @PostMapping("/edit")
+    public String updateTeam(Team team) {
+        teamService.updateTeam(team.getId(), team);
+        return "redirect:/teams";
+    }
+
+    @GetMapping("/delete")
+    public String deleteTeam(@RequestParam Long id) {
+        teamService.deleteTeam(id);
         return "redirect:/teams";
     }
 }

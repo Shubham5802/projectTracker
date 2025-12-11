@@ -3,6 +3,7 @@ package com.project.tracker.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -25,13 +26,12 @@ public class Project {
     @Column(name = "cl_description")
     private String description;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "dt_start")
-    private Date startDate;
+    private LocalDate startDate;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "dt_end")
-    private Date endDate;
+    private LocalDate endDate;
+
 
     @Column(name = "vc_status")
     private String status;
