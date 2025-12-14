@@ -7,7 +7,16 @@
     <title>Projects</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
+<c:if test="${not empty successMessage}">
+    <script>
+        alert("${successMessage}");
+    </script>
+</c:if>
+
 <body class="bg-gray-100 p-8">
+<jsp:include page="/WEB-INF/views/common/navbar.jsp"/>
+
 
 <div class="max-w-6xl mx-auto bg-white shadow rounded-lg p-6">
     <div class="flex justify-between mb-4">

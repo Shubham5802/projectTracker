@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByProject_Id(Long projectId);
+
+	List<Task> findByAssignedTo_Id(Long memberId);
 }

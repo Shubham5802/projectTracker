@@ -8,6 +8,7 @@
 </head>
 
 <body class="p-8 bg-gray-100">
+<jsp:include page="/WEB-INF/views/common/navbar.jsp"/>
 
 <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
 
@@ -37,7 +38,8 @@
                     <a href="/teams/delete?id=${team.id}" class="text-red-600"
                        onclick="return confirm('Delete this team?');">
                         Delete
-                    </a>
+                    </a>|
+                    <a href="/members?teamId=${team.id}" class="text-blue-600">View</a> 
                 </td>
             </tr>
         </c:forEach>

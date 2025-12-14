@@ -21,6 +21,7 @@ public class ProjectCreateRequest {
     @NotNull
     private LocalDate endDate;
     
+    @NotNull
     private Long teamId;
 
 }

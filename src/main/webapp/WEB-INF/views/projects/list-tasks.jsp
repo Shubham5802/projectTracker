@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
+<jsp:include page="/WEB-INF/views/common/navbar.jsp"/>
 
 <div class="max-w-6xl mx-auto bg-white p-6 rounded shadow">
 

@@ -8,6 +8,7 @@
 </head>
 
 <body class="bg-gray-100 p-8">
+<jsp:include page="/WEB-INF/views/common/navbar.jsp"/>
 
 <div class="max-w-5xl mx-auto bg-white p-6 rounded shadow">
 

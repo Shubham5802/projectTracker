@@ -88,6 +88,10 @@ public class TaskServiceImpl implements TaskService {
     }
     
 
+    @Override
+    public List<Task> getTasksByMember(Long memberId) {
+        return taskRepository.findByAssignedTo_Id(memberId);
+    }
 
 
 

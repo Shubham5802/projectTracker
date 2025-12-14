@@ -19,12 +19,19 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-    @PostMapping("/create")
-    public String createProjectFromJsp(@ModelAttribute ProjectCreateRequest request) {
-
-        projectService.createProject(request);
-
-        return "redirect:/projects/list-projects"; 
+	/*
+	 * @PostMapping("/create") public String createProjectFromJsp(@ModelAttribute
+	 * ProjectCreateRequest request) {
+	 * 
+	 * System.out.println("-------------------------"+request.getTeamId());
+	 * projectService.createProject(request);
+	 * 
+	 * return "redirect:/projects/list-projects"; }
+	 */
+    
+    @PostMapping
+    public ProjectResponse createProject(@RequestBody @Valid ProjectCreateRequest request) {
+        return projectService.createProject(request);
     }
 
     

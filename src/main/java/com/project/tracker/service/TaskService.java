@@ -22,6 +22,9 @@ public interface TaskService {
 	Long getProjectIdByTask(Long taskId);
 	
 	TaskAIDto analyzeTaskRisk(Task task);
+	
+	List<Task> getTasksByMember(Long memberId);
+
 
 }
 
